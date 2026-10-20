@@ -386,17 +386,17 @@ How the history changes:
 This builds on the loop above. The loop kept `messages` in a variable and repeated three steps by hand: add the question, call `create_chat_completion()`, add the reply. The class packages those steps into one method, so you no longer repeat them.
 
 - The history lives inside the object (`self.history`) instead of a loose variable.
-- `create_completion()` is the loop body: it calls `create_chat_completion()` from section 3.4 on `self.history`.
+- `create_completion()` is the loop body: it calls `create_chat_completion()` on `self.history`.
 - `__init__` stores the model and starts `history` with the `system` message.
 - `create_completion` appends the user input, calls the model, appends the model's reply, and returns the reply text.
 - The reply message returned by the model already has `role` and `content`, so it can be appended as is.
 
 ```python
 class Conversation:
-    def __init__(self, llm: Llama, system_prompt='', history=[]):
+    def __init__(self, llm: Llama, system_prompt='', history=None):
         self.llm = llm
         self.system_prompt = system_prompt
-        self.history = [{"role": "system", "content": self.system_prompt}] + history
+        self.history = [{"role": "system", "content": self.system_prompt}] + (history or [])
 
     def create_completion(self, user_prompt=''):
         self.history.append({"role": "user", "content": user_prompt})  # Append input
@@ -405,8 +405,6 @@ class Conversation:
         self.history.append(conversation_result)  # Append output
         return conversation_result['content']  # Return output
 ```
-
-Note: `[{...}] + history` builds a new list, so the mutable default `history=[]` is never modified. Passing `history=None` and handling it in the constructor is a safer habit.
 
 #### b) Single-turn conversation
 
