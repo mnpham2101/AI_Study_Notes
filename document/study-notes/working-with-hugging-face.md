@@ -11,12 +11,6 @@ This guide covers:
 - Using pipelines for text generation, summarization, and text classification.
 - Using Auto classes for more control, with a document Q&A example.
 
-Install the libraries used in this guide:
-
-```bash
-pip install transformers datasets huggingface_hub pypdf torch
-```
-
 Model names and outputs shown below are illustrative. Models on the Hub change or disappear, and scores vary by library version, so check the model card.
 
 References:
@@ -30,7 +24,13 @@ References:
 
 ## 1. Concepts and Features
 
-### 1.1 The Hub, models, and model cards
+### 1.1 Installing the libraries
+
+```bash
+pip install transformers datasets huggingface_hub pypdf torch
+```
+
+### 1.2 The Hub, models, and model cards
 
 **Key concepts**
 
@@ -42,7 +42,7 @@ References:
 
 Docs: [Hub documentation](https://huggingface.co/docs/hub/index) · [Models](https://huggingface.co/models)
 
-### 1.2 Datasets
+### 1.3 Datasets
 
 **Key concepts**
 
@@ -54,7 +54,7 @@ Docs: [Hub documentation](https://huggingface.co/docs/hub/index) · [Models](htt
 
 Docs: [Datasets on the Hub](https://huggingface.co/datasets) · [Loading a dataset](https://huggingface.co/docs/datasets/loading) · [Apache Arrow](https://arrow.apache.org/overview/)
 
-### 1.3 The Transformers library, pipelines, and Auto classes
+### 1.4 The Transformers library, pipelines, and Auto classes
 
 **Key concepts**
 
@@ -66,7 +66,7 @@ Docs: [Datasets on the Hub](https://huggingface.co/datasets) · [Loading a datas
 
 Docs: [Pipelines](https://huggingface.co/docs/transformers/main_classes/pipelines) · [Auto classes](https://huggingface.co/docs/transformers/model_doc/auto)
 
-### 1.4 Inference: local vs. providers
+### 1.5 Inference: local vs. providers
 
 **Key concepts**
 
@@ -571,7 +571,7 @@ Read the PDF once and reuse the text for many questions.
 Notes:
 
 - An extractive model returns a span of the document. It cannot write a new answer, and it always returns something, even if the document has no answer. Check `score`.
-- To get an answer written in full sentences, use a generative model (see 1.4 and 3.1).
+- To get an answer written in full sentences, use a generative model (see 1.5 and 3.1).
 
 ---
 
