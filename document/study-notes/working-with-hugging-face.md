@@ -117,20 +117,15 @@ $env:HF_TOKEN = "hf_..."
 
 ## 2. Datasets and a First Pipeline
 
-### 2.1 Download and install a dataset
+### 2.1 Download a dataset
 
 **Key concepts**
 
-- `pip install datasets` installs the package.
-- With it you can access, download, use, and share datasets.
+- The `datasets` library lets you access, download, use, and share datasets.
 - `load_dataset("owner/name")` downloads a dataset and returns a `DatasetDict` (all splits). The data is cached locally.
 - The `split` parameter returns one split as a `Dataset`.
 
 Docs: [Loading a dataset](https://huggingface.co/docs/datasets/loading)
-
-```bash
-pip install datasets
-```
 
 ```python
 from datasets import load_dataset
@@ -182,7 +177,7 @@ gpt2_pipeline = pipeline(task="text-generation", model="openai-community/gpt2")
 
 # Call it with a prompt
 print(gpt2_pipeline("What if AI"))
-# [{'generated_text': 'What if AI wouldn't be used? ...'}]
+# [{'generated_text': "What if AI wouldn't be used? ..."}]
 ```
 
 The result is a list of dicts. The text is under `generated_text`. Output differs on each run because generation is random.
@@ -579,7 +574,7 @@ Notes:
 
 | Task | Code |
 |---|---|
-| Install | `pip install transformers datasets huggingface_hub` |
+| Install | `pip install transformers datasets huggingface_hub pypdf torch` |
 | Load a dataset | `load_dataset("owner/name", split="train")` |
 | Filter / slice a dataset | `data.filter(fn)`, `data.select(range(n))` |
 | Run a model locally | `pipeline(task=..., model=...)` |
