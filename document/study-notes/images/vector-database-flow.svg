@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 480" width="1260" height="480" role="img" aria-labelledby="t">
+<title id="t">Embeddings workflow with a vector database</title>
+<defs>
+<marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5fa8"/></marker>
+<marker id="a-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d4f"/></marker>
+<marker id="a-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b26a00"/></marker>
+<marker id="a-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5b6270"/></marker>
+</defs>
+<rect x="0" y="0" width="1260" height="480" rx="10" fill="#ffffff" stroke="#d0d7e2"/>
+<text x="630" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b2733">Embeddings workflow with a vector database</text>
+<rect x="30" y="60" width="162" height="96" rx="8" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<path d="M46,74 H210 V162 C169.0,144 136.2,176 95.19999999999999,164 C70.6,158 52,164 46,168 Z" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<text x="113" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Documents</text>
+<text x="113" y="138" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">text + metadata to store</text>
+<rect x="30" y="250" width="200" height="120" rx="9" fill="#f1f1f4" stroke="#5b6270" stroke-width="1.6"/>
+<text x="130" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Application</text>
+<text x="130" y="322" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Interface</text>
+<text x="130" y="354" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">asks, shows results</text>
+<rect x="330" y="150" width="210" height="120" rx="9" fill="#fff3df" stroke="#b26a00" stroke-width="1.6"/>
+<text x="435" y="198" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Embeddings</text>
+<text x="435" y="220" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Model</text>
+<text x="435" y="252" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">text → vector</text>
+<path d="M720,145 H920 L890,275 H690 Z" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="805" y="195" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Embeddings</text>
+<text x="805" y="218" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">one vector per text,</text>
+<text x="805" y="234" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">plus its metadata</text>
+<path d="M1030,82 A100,22 0 0 1 1230,82 L1230,328 A100,22 0 0 1 1030,328 Z" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6"/>
+<ellipse cx="1130" cy="82" rx="100" ry="22" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="1130" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Vector</text>
+<text x="1130" y="202" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Database</text>
+<text x="1130" y="238" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">stores, indexes</text>
+<text x="1130" y="254" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">and searches</text>
+<text x="1130" y="270" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">vectors (Chroma)</text>
+<path d="M210,90 L435,90 L435,148" fill="none" stroke="#2f5fa8" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-blue)"/>
+<text x="322" y="80" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">documents</text>
+<path d="M230,310 L435,310 L435,272" fill="none" stroke="#2f5fa8" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-blue)"/>
+<text x="332" y="330" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">query</text>
+<path d="M540,210 L690,210" fill="none" stroke="#b26a00" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-orange)"/>
+<text x="615" y="192" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">create_</text>
+<text x="615" y="206" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">embeddings()</text>
+<path d="M920,210 L1030,210" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-green)"/>
+<text x="975" y="176" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">store:</text>
+<text x="975" y="190" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">collection.</text>
+<text x="975" y="204" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">add()</text>
+<path d="M1130,354 L1130,430 L130,430 L130,372" fill="none" stroke="#5b6270" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-gray)"/>
+<text x="620" y="410" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">result: nearest items + metadata</text>
+<text x="620" y="426" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">collection.query()</text>
+</svg>

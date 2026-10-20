@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 400" width="1240" height="400" role="img" aria-labelledby="t">
+<title id="t">Basic embeddings workflow: embed, then compare</title>
+<defs>
+<marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5fa8"/></marker>
+<marker id="a-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d4f"/></marker>
+<marker id="a-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b26a00"/></marker>
+<marker id="a-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5b6270"/></marker>
+</defs>
+<rect x="0" y="0" width="1240" height="400" rx="10" fill="#ffffff" stroke="#d0d7e2"/>
+<text x="620" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b2733">Basic embeddings workflow: embed, then compare</text>
+<rect x="30" y="60" width="162" height="96" rx="8" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<path d="M46,74 H210 V162 C169.0,144 136.2,176 95.19999999999999,164 C70.6,158 52,164 46,168 Z" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<text x="113" y="118" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Documents</text>
+<text x="113" y="140" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">text to search in</text>
+<rect x="310" y="190" width="210" height="120" rx="9" fill="#fff3df" stroke="#b26a00" stroke-width="1.6"/>
+<text x="415" y="238" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Embeddings</text>
+<text x="415" y="260" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Model</text>
+<text x="415" y="292" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">text → vector</text>
+<rect x="345" y="340" width="140" height="50" rx="9" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<text x="415" y="371" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Query</text>
+<text x="500" y="372" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">text to search for</text>
+<path d="M690,185 H900 L870,315 H660 Z" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="780" y="235" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Embeddings</text>
+<text x="780" y="258" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">vector space of items</text>
+<text x="780" y="274" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">in database</text>
+<rect x="1090" y="215" width="120" height="70" rx="9" fill="#f1f1f4" stroke="#5b6270" stroke-width="1.6"/>
+<text x="1150" y="258" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1b2733">Result</text>
+<path d="M210,90 L415,90 L415,188" fill="none" stroke="#2f5fa8" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-blue)"/>
+<text x="312" y="80" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">documents</text>
+<path d="M415,338 L415,312" fill="none" stroke="#2f5fa8" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-blue)"/>
+<text x="425" y="330" text-anchor="start" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">query</text>
+<path d="M520,250 L660,250" fill="none" stroke="#b26a00" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-orange)"/>
+<text x="590" y="232" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">create_</text>
+<text x="590" y="246" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">embeddings()</text>
+<path d="M900,250 L1088,250" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#a-green)"/>
+<text x="994" y="198" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Similarity</text>
+<text x="994" y="222" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">finding distance to</text>
+<text x="994" y="237" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic" fill="#1b2733">nearest items</text>
+</svg>
