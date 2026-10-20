@@ -328,7 +328,7 @@ How to read the plot:
 
 Tips:
 
-- Color points by category: map each category to a number, then pass it with `c=`, for example `c=[sorted(set(categories)).index(c) for c in categories]`.
+- Color points by category: map each category to a number, then pass it with `c=`, for example `c=[sorted(set(categories)).index(cat) for cat in categories]`.
 - Use more than a handful of texts. With very few points, t-SNE shows little structure.
 
 ---
@@ -696,13 +696,14 @@ Classification needs only the **best** match, not a list. This step has two part
 
 The diagram shows how the data objects from steps 1 and 2 are converted and where they end up as inputs of `find_closest()`.
 
-![Step 3 data flow: class_descriptions and article_texts are converted to embeddings, and class_response_dict and item_vectors become the inputs of find_closest](images/classification-step3-dataflow.svg)
+![Step 3 data flow: class_descriptions and article_texts are converted to embeddings by the same embedding model, and class_response_dict and item_vectors become the inputs of find_closest](images/classification-step3-dataflow.svg)
 
 How to read the diagram:
 
 - Rectangles are data objects. Each has a name and a short description.
 - Arrows show a conversion (for example `create_embeddings()`) or an object becoming the input of another function.
 - Blue is the class path. Green is the item path. Both paths meet at `find_closest()`.
+- The dashed box is the embedding model. The same model embeds both `class_descriptions` and `article_texts`, so their vectors can be compared.
 
 #### a) Define the function `find_closest()`
 
