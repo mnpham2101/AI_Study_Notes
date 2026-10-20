@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 520" width="1300" height="520" role="img" aria-labelledby="t">
+<title id="t">Step 3 data flow: from class_descriptions and article_texts to find_closest</title>
+<defs>
+<marker id="a-class" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5fa8"/></marker>
+<marker id="a-item" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d4f"/></marker>
+<marker id="a-func" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b26a00"/></marker>
+</defs>
+<rect x="0" y="0" width="1300" height="520" rx="10" fill="#ffffff" stroke="#d0d7e2"/>
+<text x="650" y="38" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b2733">Step 3: data flow into find_closest()</text>
+<rect x="343" y="62" width="214" height="378" rx="12" fill="#f6f3fb" stroke="#7a5ca8" stroke-width="1.8" stroke-dasharray="9 5"/>
+<text x="450" y="230" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#5a3f8a">Embedding Model</text>
+<text x="450" y="247" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">The same model embeds both</text>
+<text x="450" y="261" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">class_descriptions</text>
+<text x="450" y="275" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">and <tspan font-family="Consolas, Menlo, monospace">article_texts</tspan></text>
+<rect x="20" y="90" width="180" height="120" rx="9" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<text x="34" y="118" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">class_descriptions</text>
+<text x="34" y="142" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">List of text labels,</text>
+<text x="34" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">one per topic:</text>
+<text x="34" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">'Tech', 'Science', ...</text>
+<rect x="350" y="90" width="190" height="120" rx="9" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.6"/>
+<text x="364" y="118" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">class_response_dict</text>
+<text x="364" y="142" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">Dictionary returned by</text>
+<text x="364" y="160" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">create_embeddings().</text>
+<text x="364" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">['data'] holds one</text>
+<text x="364" y="196" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">embedding per class.</text>
+<line x1="200" y1="150" x2="348" y2="150" stroke="#2f5fa8" stroke-width="2.2" marker-end="url(#a-class)"/>
+<text x="272" y="140" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">create_embeddings()</text>
+<line x1="540" y1="150" x2="1018" y2="150" stroke="#2f5fa8" stroke-width="2.2" marker-end="url(#a-class)"/>
+<text x="780" y="122" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">passed as response_dict</text>
+<text x="780" y="137" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">(same for every item)</text>
+<rect x="20" y="285" width="180" height="130" rx="9" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="34" y="313" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">article_texts</text>
+<text x="34" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">Formatted text: the</text>
+<text x="34" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">headline and keywords,</text>
+<text x="34" y="373" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">one string per article.</text>
+<rect x="350" y="285" width="190" height="130" rx="9" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="364" y="313" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">article_response_dict</text>
+<text x="364" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">Dictionary returned by</text>
+<text x="364" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">create_embeddings().</text>
+<text x="364" y="373" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">['data'] holds one</text>
+<text x="364" y="391" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">embedding per article.</text>
+<rect x="690" y="285" width="180" height="130" rx="9" fill="#e9f6ee" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="704" y="313" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">item_vectors</text>
+<text x="704" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">List of vectors, one</text>
+<text x="704" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">per article. Each is the</text>
+<text x="704" y="373" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">'embedding' value of an</text>
+<text x="704" y="391" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">entry in ['data'].</text>
+<line x1="200" y1="350" x2="348" y2="350" stroke="#2e7d4f" stroke-width="2.2" marker-end="url(#a-item)"/>
+<text x="272" y="340" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">create_embeddings()</text>
+<line x1="540" y1="350" x2="688" y2="350" stroke="#2e7d4f" stroke-width="2.2" marker-end="url(#a-item)"/>
+<text x="615" y="325" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">item["embedding"]</text>
+<text x="615" y="340" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">for item in ["data"]</text>
+<line x1="870" y1="350" x2="1018" y2="350" stroke="#2e7d4f" stroke-width="2.2" marker-end="url(#a-item)"/>
+<text x="945" y="288" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">passed as</text>
+<text x="945" y="303" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">query_vector</text>
+<text x="945" y="318" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">(one vector</text>
+<text x="945" y="333" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">at a time)</text>
+<rect x="1020" y="100" width="250" height="330" rx="9" fill="#fff3df" stroke="#b26a00" stroke-width="1.8"/>
+<text x="1145" y="130" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="16" font-weight="700" fill="#1b2733">find_closest()</text>
+<text x="1034" y="172" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" fill="#2f5fa8">response_dict</text>
+<text x="1034" y="190" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">candidates to compare with</text>
+<text x="1034" y="372" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" fill="#2e7d4f">query_vector</text>
+<text x="1034" y="390" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">the vector to classify</text>
+<text x="1145" y="254" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">cosine distance to every class,</text>
+<text x="1145" y="270" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">then min() keeps the smallest</text>
+<rect x="1020" y="455" width="250" height="50" rx="9" fill="#f1f1f4" stroke="#5b6270" stroke-width="1.6"/>
+<text x="1034" y="483" font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700" fill="#1b2733">closest</text>
+<text x="1120" y="485" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b2733">{distance, index}</text>
+<line x1="1145" y1="430" x2="1145" y2="453" stroke="#b26a00" stroke-width="2.2" marker-end="url(#a-func)"/>
+<text x="1157" y="444" font-family="Consolas, Menlo, monospace" font-size="12" fill="#1b2733">returns</text>
+<rect x="20" y="475" width="14" height="14" rx="3" fill="#eaf1fb" stroke="#2f5fa8"/><text x="40" y="487" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">class path</text>
+<rect x="130" y="475" width="14" height="14" rx="3" fill="#e9f6ee" stroke="#2e7d4f"/><text x="150" y="487" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#1b2733">item path</text>
+</svg>

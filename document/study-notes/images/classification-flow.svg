@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 680" width="880" height="680" role="img" aria-labelledby="t">
+<title id="t">Classification: process flow</title>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5fa8"/></marker></defs>
+<rect x="0" y="0" width="880" height="680" rx="10" fill="#ffffff" stroke="#d0d7e2"/>
+<text x="440" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2733">Classification: process flow</text>
+<rect x="120" y="56" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 1: Create input text</text>
+<text x="140" y="114" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> create_item_text(article)</text>
+<text x="140" y="138" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> class_descriptions, article_texts</text>
+<line x1="440" y1="156" x2="440" y2="222" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="185" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">class_descriptions</text>
+<text x="456" y="205" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">article_texts</text>
+<rect x="120" y="224" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 2: Create embeddings</text>
+<text x="140" y="282" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> create_embeddings(texts)</text>
+<text x="140" y="306" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> class_response_dict, article_response_dict</text>
+<line x1="440" y1="324" x2="440" y2="390" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="353" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">class_response_dict  (class embeddings)</text>
+<text x="456" y="373" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">item_vector          (per item, as query_vector)</text>
+<rect x="120" y="392" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="422" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 3: Find the closest class (repeat per item)</text>
+<text x="140" y="450" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> find_closest(query_vector, response_dict)</text>
+<text x="140" y="474" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> closest  ({distance, index})</text>
+<line x1="440" y1="492" x2="440" y2="554" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="529" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">closest['index']</text>
+<rect x="120" y="556" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="586" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 4: Map the index to a label</text>
+<text x="140" y="614" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> topics[closest['index']]['label']</text>
+<text x="140" y="638" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> label  (predicted class)</text>
+</svg>

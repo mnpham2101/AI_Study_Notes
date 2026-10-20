@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 700" width="880" height="700" role="img" aria-labelledby="t">
+<title id="t">Recommendation system: process flow</title>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5fa8"/></marker></defs>
+<rect x="0" y="0" width="880" height="700" rx="10" fill="#ffffff" stroke="#d0d7e2"/>
+<text x="440" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2733">Recommendation system: process flow</text>
+<rect x="120" y="56" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 1: Create input text</text>
+<text x="140" y="114" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> create_article_text(article)</text>
+<text x="140" y="138" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> history_texts, article_texts  (unread articles only)</text>
+<line x1="440" y1="156" x2="440" y2="222" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="185" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">history_texts</text>
+<text x="456" y="205" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">article_texts</text>
+<rect x="120" y="224" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 2: Create embeddings</text>
+<text x="140" y="282" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> create_embeddings(texts)</text>
+<text x="140" y="306" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> history_response_dict, article_response_dict</text>
+<line x1="440" y1="324" x2="440" y2="386" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="361" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">history_response_dict   (vectors read from 'data')</text>
+<rect x="120" y="388" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 3: Combine the history into one vector</text>
+<text x="140" y="446" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> np.mean(history_vectors, axis=0)</text>
+<text x="140" y="470" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> mean_history_vector</text>
+<line x1="440" y1="488" x2="440" y2="574" stroke="#2f5fa8" stroke-width="2" marker-end="url(#ah)"/>
+<text x="456" y="517" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">mean_history_vector     (used as query_vector)</text>
+<text x="456" y="537" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">article_response_dict   (document embeddings)</text>
+<text x="456" y="557" font-family="Consolas, Menlo, monospace" font-size="13" fill="#1b2733">n                       (number of results)</text>
+<rect x="120" y="576" width="640" height="100" rx="10" fill="#eaf1fb" stroke="#2f5fa8" stroke-width="1.5"/>
+<text x="140" y="606" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b2733">Step 4: Find the closest results</text>
+<text x="140" y="634" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">func:</tspan> find_n_closest(query_vector, response_dict, n)</text>
+<text x="140" y="658" font-family="Consolas, Menlo, monospace" font-size="14" fill="#1b2733"><tspan font-weight="700">returns:</tspan> distances  (sorted list of {distance, index})</text>
+</svg>
