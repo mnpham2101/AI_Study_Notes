@@ -1,4 +1,4 @@
-# Develop AI Systems with the OpenAI
+# Develop AI Systems with OpenAI
 
 ## Introduction
 
@@ -433,7 +433,7 @@ The second prompt, "Summarize this", only makes sense because the first question
 
 **Reusable example: history behind a helper function**
 
-The logic is the same, but it is wrapped in `ask()` function. You can call it at any time, for example once per turn of an interactive chat, instead of looping over a fixed list.
+The logic is the same, but it is wrapped in the `ask()` function. You can call it at any time, for example once per turn of an interactive chat, instead of looping over a fixed list.
 
 ```python
 history = [{"role": "system", "content": "You are a helpful assistant."}]
@@ -561,7 +561,6 @@ if batch.status == "completed":
     print(output.text)  # one JSON result per line, matched by custom_id
 ```
 
-
 ---
 
 ## 3. Function Calling
@@ -671,8 +670,6 @@ Docs: [Chat Completions – tool_choice](https://platform.openai.com/docs/api-re
 **Specify the function to call**
 
 ```python
-client = OpenAI(api_key="<OPENAI_API_TOKEN>")
-
 messages = [{"role": "user", "content": "What is the current vehicle speed?"}]
 
 response = client.chat.completions.create(
@@ -818,6 +815,7 @@ Notes:
 
 | Task | API call |
 |---|---|
+| Install | `pip install openai` |
 | Authenticate | `OpenAI()` with `OPENAI_API_KEY` |
 | Single prompt | `client.chat.completions.create(messages=[...])` |
 | Set behavior | `system` role message |
