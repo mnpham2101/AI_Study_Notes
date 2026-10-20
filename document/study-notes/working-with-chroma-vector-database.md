@@ -565,12 +565,16 @@ Tips:
 | Connect (server) | `chromadb.HttpClient(host="localhost", port=8000)` |
 | Embedding function | `embedding_functions.OpenAIEmbeddingFunction(api_key_env_var=..., model_name=...)` |
 | Create collection | `client.get_or_create_collection(name, embedding_function=ef, configuration={"hnsw": {"space": "cosine"}})` |
-| Add items | `collection.add(ids=..., documents=..., metadatas=...)` |
-| Search | `collection.query(query_texts=[...], n_results=n)` |
-| Read results | `results["documents"][0]` (list of lists: `[0]` is the first query) |
+| Add items | `collection.add(ids=..., documents=..., metadatas=...)`, `collection.upsert(...)` (add new, overwrite existing) |
+| Find similar items (nearby vectors) | `collection.query(query_texts=[...], n_results=n)` |
+| Read query results | `results["documents"][0]` (list of lists: `[0]` is the first query) |
 | Filter metadata | `where={"category": "audio"}`, `$and`, `$or`, `$lt`, `$in` |
 | Filter text | `where_document={"$contains": "..."}` |
-| Read without search | `collection.get(ids=...)`, `count()`, `peek()` |
-| Change items | `update()`, `upsert()`, `delete()` |
+| Get specific items | `collection.get(ids=...)`, `collection.get(where=...)`, `collection.peek()` |
+| Count items | `collection.count()` |
+| Change items | `collection.update(...)` (existing only), `collection.upsert(...)` |
+| Delete items | `collection.delete(ids=...)`, `collection.delete(where=...)` |
+| List collections | `client.list_collections()` |
 | Open later | `client.get_collection(name, embedding_function=ef)` |
+| Delete collection | `client.delete_collection(name)` |
 | Metadata | Facts used to filter. Not embedded, not used for similarity. |
