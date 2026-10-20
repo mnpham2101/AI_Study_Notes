@@ -12,12 +12,6 @@ This guide covers three basics:
 
 All examples use the **Chat Completions** API. OpenAI's newer **Responses API** offers similar features. Model names (such as `gpt-4o-mini`) change over time, so check the model list.
 
-Install the SDK:
-
-```bash
-pip install openai
-```
-
 References:
 
 - API reference: <https://platform.openai.com/docs/api-reference>
@@ -41,7 +35,13 @@ from openai import OpenAI
 client = OpenAI()  # reads OPENAI_API_KEY from the environment
 ```
 
-### 1.1 Authentication and API keys
+### 1.1 Installing the SDK
+
+```bash
+pip install openai
+```
+
+### 1.2 Authentication and API keys
 
 **Key concepts**
 
