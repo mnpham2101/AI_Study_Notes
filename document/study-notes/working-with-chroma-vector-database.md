@@ -29,7 +29,7 @@ This is the workflow from the OpenAI embeddings notes.
 
 1. **Documents** are sent to the **embeddings model**, which returns one vector per text.
 2. The **query** goes through the same model and becomes a vector.
-3. **Similarity** compares the query vector with every document vector. In the notes this is `find_n_closest()`: it computes the cosine distance to each item and sorts them, which means finding the distance to the nearest items.
+3. **Similarity** compares the query vector with every document vector. In the notes this is `find_n_closest()`: it computes the cosine distance to each item and sorts them.
 4. The **result** is the closest items.
 
 This works for a handful of texts. It has limits:
@@ -130,10 +130,10 @@ The steps in this section:
 2. Connect to the database.
 3. Create a collection.
 4. Add data.
-5. Query.
-6. Filter with metadata.
-7. Inspect and retrieve.
-8. Update and delete.
+5. Update and delete.
+6. Query.
+7. Filter with metadata.
+8. Inspect and retrieve.
 9. Persist and manage collections.
 
 ### 1.1 Installing Chroma
@@ -246,7 +246,7 @@ collection = client.get_or_create_collection(
 Notes:
 
 - The distance metric is fixed when the collection is created. Create a new collection to change it.
-- Use the same embedding function every time you open the collection. Older versions of Chroma set the metric with `metadata={"hnsw:space": "cosine"}`; check the docs for your version.
+- Older versions of Chroma set the metric with `metadata={"hnsw:space": "cosine"}`; check the docs for your version.
 - Cosine distance is `1 - cosine similarity`: smaller means closer, as in the OpenAI embeddings notes.
 
 ### 1.4 Adding data
@@ -256,7 +256,7 @@ Notes:
 - `collection.add()` stores items.
 - It takes parallel lists: `ids`, `documents`, and optionally `metadatas`. Item `i` is described by element `i` of each list.
 - With an embedding function, Chroma creates the embeddings for you.
-- Ids must be **unique strings**. Adding an id that already exists does not replace it. Use `upsert()` for that (see 1.8).
+- Ids must be **unique strings**. Adding an id that already exists does not replace it. Use `upsert()` for that (see 1.5).
 
 Docs: [Chroma – Add data](https://docs.trychroma.com/docs/collections/add-data)
 
@@ -306,7 +306,63 @@ Tips:
 - Add in batches for large data. Do not add one item per call.
 - Every vector in a collection must have the same length.
 
-### 1.5 Querying
+### 1.5 Updating and deleting
+
+**Key concepts**
+
+- `update()` changes existing items. The ids must exist.
+- `upsert()` updates an item if the id exists, otherwise adds it.
+- `delete()` removes items by id or by filter.
+- If you change a document, Chroma creates a new embedding for it.
+
+```python
+# Change metadata only (no re-embedding)
+collection.update(
+    ids=["p2"],
+    metadatas=[{"category": "computers", "price": 1399, "in_stock": True}],
+)
+
+# Change the text (the embedding is recomputed)
+collection.update(
+    ids=["p5"],
+    documents=["Ceramic non-stick frying pan, 28 cm"],
+)
+
+# Update if the id exists, add if it does not
+collection.upsert(
+    ids=["p7"],
+    documents=["Mechanical keyboard with quiet switches"],
+    metadatas=[{"category": "computers", "price": 89, "in_stock": True}],
+)
+
+# Delete by id (the item added by upsert)
+collection.delete(ids=["p7"])
+
+# Delete by filter: removes every matching item
+# (commented out so the products from 1.4 stay for the next examples)
+# collection.delete(where={"in_stock": False})
+```
+
+Notes:
+
+- `delete()` with no `ids` and no `where` is not allowed. This protects you from deleting everything by mistake.
+
+**`add()` vs `upsert()`**
+
+| | `add()` | `upsert()` |
+|---|---|---|
+| Id is new | Adds the item. | Adds the item. |
+| Id already exists | Does **not** replace the item. The existing item is kept and the new data is ignored (Chroma logs a warning). | **Replaces** the stored document, metadata, and embedding with the new data. |
+| Use for | First load of data that you know is new. | Loading data that may already be there, or re-running a script. |
+
+```python
+collection.add(ids=["p1"], documents=["Old text"])
+collection.add(ids=["p1"], documents=["New text"])      # ignored: p1 still has "Old text"
+
+collection.upsert(ids=["p1"], documents=["New text"])   # p1 now has "New text" (re-embedded)
+```
+
+### 1.6 Querying
 
 **Key concepts**
 
@@ -374,7 +430,7 @@ Comparing with the OpenAI notes:
 - `find_n_closest()` returned `{"distance", "index"}` and you mapped the index back to the item. Here the result already contains the id, text, and metadata.
 - Several queries in one call, such as `query_texts=["laptop", "speaker"]`, return one inner list per query.
 
-### 1.6 Filtering with metadata
+### 1.7 Filtering with metadata
 
 **Key concepts**
 
@@ -425,7 +481,7 @@ Notes:
 - A key that does not exist in an item's metadata does not match.
 - Use exactly the same value types you stored. `"899"` (string) does not match `899` (integer).
 
-### 1.7 Inspecting and retrieving
+### 1.8 Inspecting and retrieving
 
 **Key concepts**
 
@@ -435,7 +491,7 @@ Notes:
 - Unlike `query()`, `get()` returns flat lists, not lists of lists.
 
 ```python
-print(collection.count())            # 5
+print(collection.count())            # number of stored items
 
 print(collection.peek(2))            # first 2 items
 
@@ -445,58 +501,30 @@ print(item["documents"][0])          # flat list: index 0 is the item
 
 # Get by metadata filter
 cheap = collection.get(where={"price": {"$lt": 100}})
-print(cheap["ids"])                  # ['p4', 'p5']
+print(cheap["ids"])                  # ['p4', 'p5'] for the five products from 1.4
 
 # Include the stored vector
 with_vector = collection.get(ids=["p1"], include=["embeddings"])
 print(len(with_vector["embeddings"][0]))   # 1536
 ```
 
-| | `query()` | `get()` |
-|---|---|---|
-| Needs a query text | Yes | No |
-| Sorted by closeness | Yes | No |
-| Result shape | List of lists (one per query) | Flat lists |
-| Use for | Searching by meaning | Reading known items |
+**`get()` vs `query()`**
 
-### 1.8 Updating and deleting
+`query()` answers "which items are *closest in meaning* to this text?". `get()` answers "give me the items that match these ids or conditions". `get()` never compares vectors.
 
-**Key concepts**
-
-- `update()` changes existing items. The ids must exist.
-- `upsert()` updates an item if the id exists, otherwise adds it.
-- `delete()` removes items by id or by filter.
-- If you change a document, Chroma creates a new embedding for it.
+The same filter behaves differently in each call:
 
 ```python
-# Change metadata only (no re-embedding)
-collection.update(
-    ids=["p2"],
-    metadatas=[{"category": "computers", "price": 1399, "in_stock": True}],
-)
+# get(): ALL items under 100, in no ranked order, no distances
+collection.get(where={"price": {"$lt": 100}})
 
-# Change the text (the embedding is recomputed)
-collection.update(
-    ids=["p5"],
-    documents=["Ceramic non-stick frying pan, 28 cm"],
+# query(): the 2 items under 100 that are closest to the text, ranked, with distances
+collection.query(
+    query_texts=["small audio device"],
+    n_results=2,
+    where={"price": {"$lt": 100}},
 )
-
-# Update if the id exists, add if it does not
-collection.upsert(
-    ids=["p7"],
-    documents=["Mechanical keyboard with quiet switches"],
-    metadatas=[{"category": "computers", "price": 89, "in_stock": True}],
-)
-
-# Delete by id or by filter
-collection.delete(ids=["p4"])
-collection.delete(where={"in_stock": False})
 ```
-
-Notes:
-
-- `delete()` with no `ids` and no `where` is not allowed. This protects you from deleting everything by mistake.
-- Use `upsert()` in scripts you can run twice. `add()` with an existing id does not replace the item.
 
 ### 1.9 Persisting and managing collections
 
