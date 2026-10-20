@@ -555,6 +555,83 @@ Tips:
 
 ---
 
+## 2. Chroma compared with Qdrant
+
+Qdrant is another open-source vector database. Both store vectors and find the nearest ones. They differ in how much they do for you and how far they scale.
+
+### 2.1 Terms
+
+| Idea | Chroma | Qdrant |
+|---|---|---|
+| Group of items | collection | collection |
+| One item | item (`id`, `document`, `metadata`, embedding) | point (`id`, vector, `payload`) |
+| Facts used to filter | `metadatas` | `payload` |
+| Original text | stored as `documents` | not a separate field. Put it in the payload. |
+| Id type | string | unsigned integer or UUID |
+
+### 2.2 Same tasks in code
+
+```python
+# Chroma: connect, create, add, find similar
+import chromadb
+client = chromadb.PersistentClient(path="./chroma_db")
+collection = client.get_or_create_collection("products", embedding_function=ef)
+collection.add(ids=["p1"], documents=["wireless headphones"], metadatas=[{"category": "audio"}])
+results = collection.query(query_texts=["music"], n_results=3, where={"category": "audio"})
+```
+
+```python
+# Qdrant: connect, create, add, find similar
+from qdrant_client import QdrantClient, models
+
+client = QdrantClient(path="./qdrant_db")  # or ":memory:" or url="http://localhost:6333"
+client.create_collection(
+    "products",
+    vectors_config=models.VectorParams(size=1536, distance=models.Distance.COSINE),
+)
+# You compute the vectors yourself (for example with an OpenAI embedding call)
+client.upsert("products", points=[
+    models.PointStruct(id=1, vector=vec, payload={"text": "wireless headphones", "category": "audio"}),
+])
+results = client.query_points(
+    "products",
+    query=query_vec,
+    limit=3,
+    query_filter=models.Filter(must=[
+        models.FieldCondition(key="category", match=models.MatchValue(value="audio")),
+    ]),
+)
+```
+
+### 2.3 Differences
+
+| Topic | Chroma | Qdrant |
+|---|---|---|
+| Embeddings | Can embed text for you through an embedding function | You pass vectors. Optional FastEmbed add-on can embed locally. |
+| Vector size | Set by the embedding function | Must be given when the collection is created |
+| Add items | `add()` (rejects existing ids), `upsert()` | `upsert()` (add or overwrite) |
+| Query input | Text or vectors | Vectors (or text with FastEmbed) |
+| Filter syntax | Dictionaries: `{"category": "audio"}`, `$and`, `$or` | Objects: `Filter`, `FieldCondition`, `MatchValue` (`must`, `should`, `must_not`) |
+| Filter speed | Fine for small data | Payload indexes make filtering fast on large data |
+| Search types | Dense vectors, plus text filters | Dense, sparse, hybrid, multiple vectors per point |
+| Scaling | Best for one machine or small servers | Sharding and replication for large clusters |
+| Memory use | Vectors kept in the HNSW index | Adds quantization and on-disk storage to reduce memory |
+| Written in | Python / Rust core | Rust |
+| Run modes | In-memory, local folder, server, cloud | In-memory, local folder, Docker server, cloud |
+| Learning curve | Low. Few concepts. | Higher. More settings and types. |
+
+### 2.4 When to choose which
+
+- **Chroma:** prototypes, notebooks, small apps, learning RAG. Text goes in, similar text comes out, with little setup.
+- **Qdrant:** production services, large data (millions of vectors or more), heavy filtering, hybrid search, or when you need clustering and tight memory control.
+
+Tips:
+
+- The core idea is the same in both: embed, store with filterable facts, find the nearest vectors. Moving between them mostly means rewriting the connect, filter and embedding code.
+- With Qdrant, keep the embedding model next to the collection. Like Chroma, it does not remember which model made the vectors.
+
+---
+
 ## Summary
 
 | Task | How |
